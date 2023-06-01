@@ -1,0 +1,1 @@
+String appName = "Trivial Master";
