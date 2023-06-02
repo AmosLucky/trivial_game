@@ -15,6 +15,11 @@ class GeneralRepo {
 
   navigateReplaceScreen(BuildContext context, Widget child) {
     var route = MaterialPageRoute(builder: (BuildContext) => child);
-    Navigator.push(context, route);
+    Navigator.pushReplacement(context, route);
+  }
+
+  navigateReplaceScreen2(Widget child) {
+    var route = MaterialPageRoute(builder: (BuildContext) => child);
+    navigatorKey.currentState?.push(route);
   }
 }
