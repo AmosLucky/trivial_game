@@ -82,7 +82,10 @@ class DbHelper {
       final Database db = await initializedDB();
       var res = await db
           .rawQuery("SELECT * FROM " + questionTable + " where id = ${index}");
-      QuestionModel questionModel = QuestionModel.fromJson(res[0]);
+      var converted = convertTOArray(res[0]);
+      QuestionModel questionModel = QuestionModel.fromJson(converted);
+      questionModel.incorrectAnswers
+          .insert(random(0, 3), converted['correct_answer'] + "-");
       questions.add(questionModel);
     }
     return questions;
@@ -90,5 +93,13 @@ class DbHelper {
 
   int random(int min, int max) {
     return min + Random().nextInt(max - min);
+  }
+
+  Map<String, dynamic> convertTOArray(Map<String, dynamic> data) {
+    data = Map.of(data);
+    var arrayToJson = jsonDecode(data['incorrect_answers']);
+
+    data['incorrect_answers'] = arrayToJson;
+    return data;
   }
 }

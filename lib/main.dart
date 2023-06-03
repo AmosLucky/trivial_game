@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trivial_game/constatnts/app_name.dart';
+import 'package:trivial_game/repo/game_repo.dart';
 import 'package:trivial_game/repo/init_repo.dart';
 import 'package:trivial_game/screens/splash_screen.dart';
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 
 void main() {
     WidgetsFlutterBinding.ensureInitialized();
@@ -19,8 +22,11 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => Initialize()),
+        ChangeNotifierProvider(create: (_) => GameRepo()),
       ],
       child: MaterialApp(
+       
+      navigatorKey: navigatorKey,
         title: appName,
         theme: ThemeData(
     

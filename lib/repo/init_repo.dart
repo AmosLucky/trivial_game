@@ -30,7 +30,7 @@ class Initialize extends ChangeNotifier {
 
       print(insertLevel);
     }
-    initializeGame(context);
+     GeneralRepo().navigateReplaceScreen(context, const HomeScreen());
   }
 
   void initializeGame(BuildContext context) async {
@@ -47,7 +47,7 @@ class Initialize extends ChangeNotifier {
   }
 
   Map<String, dynamic> convertTOJson(Map<String, dynamic> data) {
-    var arrayToJson = json.encode(data['incorrect_answers']);
+    var arrayToJson = jsonEncode(data['incorrect_answers']);
     data['incorrect_answers'] = arrayToJson;
     return data;
   }

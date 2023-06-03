@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class GeneralRepo {
-  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+import '../main.dart';
 
+class GeneralRepo {
   navigateToScreen(BuildContext context, Widget child) {
     var route = MaterialPageRoute(builder: (BuildContext) => child);
     Navigator.push(context, route);
@@ -20,6 +20,6 @@ class GeneralRepo {
 
   navigateReplaceScreen2(Widget child) {
     var route = MaterialPageRoute(builder: (BuildContext) => child);
-    navigatorKey.currentState?.push(route);
+    navigatorKey.currentState?.pushReplacement(route);
   }
 }
